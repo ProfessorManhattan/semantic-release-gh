@@ -64,6 +64,7 @@
   "peerDependencies": {
     "semantic-release": ">=18.0.0-beta.1"
   },
+  "optionalDependencies": {},
   "devDependencies": {
     "@megabytelabs/jest-preset": "^1.0.0",
     "@types/node": "^16.11.6",
