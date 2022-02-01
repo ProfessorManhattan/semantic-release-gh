@@ -117,6 +117,9 @@
   "blueprint": {
     "customPackageName": "semantic-release-gh",
     "description": "The official GitHub plugin, modified to accept repositoryUrl as a parameter",
+    "github_id": "R_kgDOGxNq3w",
+    "gitlab_group_id": "",
+    "gitlab_project_id": "33305860",
     "group": "npm",
     "jsonOverrides": {
       "package.json": {
@@ -160,10 +163,7 @@
     "slug": "semantic-release-gh",
     "subgroup": "plugin",
     "subheader_description": "A tweaked version of the official `@semantic-release/github` plugin that allows you to pass in `repositoryUrl` as a plugin configuration instead of a CLI parameter",
-    "title": "Semantic Release GitHub",
-    "github_id": "R_kgDOGxNq3w",
-    "gitlab_project_id": "33305860",
-    "gitlab_group_id": ""
+    "title": "Semantic Release GitHub"
   },
   "changelog": {
     "displayTypes": [

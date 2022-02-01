@@ -71,18 +71,18 @@
   - [GitHub authentication](#github-authentication)
   - [Environment variables](#environment-variables)
   - [Options](#options)
-    - [proxy](#proxy)
-      - [proxy examples](#proxy-examples)
-    - [assets](#assets)
-      - [assets examples](#assets-examples)
-    - [successComment](#successcomment)
-      - [successComment example](#successcomment-example)
-    - [failComment](#failcomment)
-      - [failComment example](#failcomment-example)
-    - [releasedLabels](#releasedlabels)
-      - [releasedLabels example](#releasedlabels-example)
-    - [addReleases](#addreleases)
-      - [addReleases example](#addreleases-example)
+    - [`proxy`](#proxy)
+    - [`proxy` Examples](#proxy-examples)
+    - [`assets`](#assets)
+    - [`assets` Examples](#assets-examples)
+    - [`successComment`](#successcomment)
+    - [`successComment` Example](#successcomment-example)
+    - [`failComment`](#failcomment)
+    - [`failComment` Example](#failcomment-example)
+    - [`releasedLabels`](#releasedlabels)
+    - [`releasedLabels` Example](#releasedlabels-example)
+    - [`addReleases`](#addreleases)
+    - [`addReleases` example](#addreleases-example)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -117,7 +117,7 @@ npm run help
 
 ## Summary
 
-[**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to publish a
+**[semantic-release](https://github.com/semantic-release/semantic-release)** plugin to publish a
 [GitHub release](https://help.github.com/articles/about-releases) and comment on released Pull Requests/Issues.
 
 | Step               | Description                                                                                                                                                                                                                              |
@@ -133,7 +133,7 @@ npm run help
 ## Install
 
 ```bash
-$ npm install semantic-release-github -D
+$ npm install --save-dev semantic-release-gh
 ```
 
 <a href="#usage" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
@@ -211,7 +211,7 @@ When using the _GITHUB_TOKEN_, the **minimum required permissions** are:
 | `releasedLabels`      | The [labels](https://help.github.com/articles/about-labels) to add to each issue and pull request resolved by the release. Set to `false` to not add any label. See [releasedLabels](#releasedlabels). | `['released<%= nextRelease.channel ? \` on @\${nextRelease.channel}\` : "" %>']-                                                                     |
 | `addReleases`         | Will add release links to the GitHub Release. Can be `false`, `"bottom"` or `"top"`. See [addReleases](#addReleases).                                                                                  | `false`                                                                                                                                              |
 
-#### proxy
+#### `proxy`
 
 Can be `false`, a proxy URL or an `Object` with the following properties:
 
@@ -224,12 +224,12 @@ Can be `false`, a proxy URL or an `Object` with the following properties:
 
 See [node-https-proxy-agent](https://github.com/TooTallNate/node-https-proxy-agent#new-httpsproxyagentobject-options) and [node-http-proxy-agent](https://github.com/TooTallNate/node-http-proxy-agent) for additional details.
 
-##### proxy examples
+#### `proxy` Examples
 
 `'http://168.63.76.32:3128'`: use the proxy running on host `168.63.76.32` and port `3128` for each GitHub API request.
 `{host: '168.63.76.32', port: 3128, headers: {Foo: 'bar'}}`: use the proxy running on host `168.63.76.32` and port `3128` for each GitHub API request, setting the `Foo` header value to `bar`.
 
-#### assets
+#### `assets`
 
 Can be a [glob](https://github.com/isaacs/node-glob#glob-primer) or and `Array` of
 [globs](https://github.com/isaacs/node-glob#glob-primer) and `Object`s with the following properties:
@@ -257,7 +257,7 @@ The `name` and `label` for each assets are generated with [Lodash template](http
 
 **Note**: If a file has a match in `assets` it will be included even if it also has a match in `.gitignore`.
 
-##### assets examples
+#### `assets` Examples
 
 `'dist/*.js'`: include all the `js` files in the `dist` directory, but not in its sub-directories.
 
@@ -274,7 +274,7 @@ files.
 
 > `[MyLibrary JS (v1.0.0) distribution](MyLibrary-v1.0.0.js)`
 
-#### successComment
+#### `successComment`
 
 The message for the issue comments is generated with [Lodash template](https://lodash.com/docs#template). The following variables are available:
 
@@ -287,13 +287,13 @@ The message for the issue comments is generated with [Lodash template](https://l
 | `releases`    | `Array` with a release `Object`s for each release published, with optional release data such as `name` and `url`.                                                                                                                                                             |
 | `issue`       | A [GitHub API pull request object](https://developer.github.com/v3/search/#search-issues) for pull requests related to a commit, or an `Object` with the `number` property for issues resolved via [keywords](https://help.github.com/articles/closing-issues-using-keywords) |
 
-##### successComment example
+#### `successComment` Example
 
 The `successComment` `This ${issue.pull_request ? 'pull request' : 'issue'} is included in version ${nextRelease.version}` will generate the comment:
 
 > This pull request is included in version 1.0.0
 
-#### failComment
+#### `failComment`
 
 The message for the issue content is generated with [Lodash template](https://lodash.com/docs#template). The following variables are available:
 
@@ -302,7 +302,7 @@ The message for the issue content is generated with [Lodash template](https://lo
 | `branch`  | The branch from which the release had failed.                                                                                                                                                                                                                                                                          |
 | `errors`  | An `Array` of [SemanticReleaseError](https://github.com/semantic-release/error). Each error has the `message`, `code`, `pluginName` and `details` properties.<br>`pluginName` contains the package name of the plugin that threw the error.<br>`details` contains a information about the error formatted in markdown. |
 
-##### failComment example
+#### `failComment` Example
 
 The `failComment` `This release from branch ${branch.name} had failed due to the following errors:\n- ${errors.map(err => err.message).join('\\n- ')}` will generate the comment:
 
@@ -311,7 +311,7 @@ The `failComment` `This release from branch ${branch.name} had failed due to the
 > - Error message 1
 > - Error message 2
 
-#### releasedLabels
+#### `releasedLabels`
 
 Each label name is generated with [Lodash template](https://lodash.com/docs#template). The following variables are available:
 
@@ -324,19 +324,19 @@ Each label name is generated with [Lodash template](https://lodash.com/docs#temp
 | `releases`    | `Array` with a release `Object`s for each release published, with optional release data such as `name` and `url`.                                                                                                                                                             |
 | `issue`       | A [GitHub API pull request object](https://developer.github.com/v3/search/#search-issues) for pull requests related to a commit, or an `Object` with the `number` property for issues resolved via [keywords](https://help.github.com/articles/closing-issues-using-keywords) |
 
-##### releasedLabels example
+#### `releasedLabels` Example
 
 The `releasedLabels` `` ['released<%= nextRelease.channel ? ` on @\${nextRelease.channel}` : "" %> from <%= branch.name %>'] `` will generate the label:
 
 > released on @next from branch next
 
-#### addReleases
+#### `addReleases`
 
 Add links to other releases to the GitHub release body.
 
 Valid values for this option are `false`, `"top"` or `"bottom"`.
 
-##### addReleases example
+#### `addReleases` example
 
 See [The introducing PR](https://github.com/semantic-release/github/pull/282) for an example on how it will look.
 
