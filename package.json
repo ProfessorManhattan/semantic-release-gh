@@ -26,12 +26,12 @@
   ],
   "scripts": {
     "codecov": "codecov -f coverage/coverage-final.json",
-    "help": "task --list",
+    "help": "",
     "lint": "xo",
-    "prepare": "task common:husky",
+    "prepare": "",
     "repair": "bash <(curl -sS https://install.doctor/repair)",
     "semantic-release": "semantic-release",
-    "start": "bash .config/start.sh",
+    "start": "",
     "pretest": "npm run lint",
     "test": "nyc ava -v",
     "test:ci": "nyc ava -v"
