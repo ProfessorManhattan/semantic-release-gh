@@ -1,7 +1,7 @@
 <!-- ⚠️ This README has been generated from the file(s) ".config/docs/blueprint-readme-plugin.md" ⚠️--><div align="center">
   <center>
-    <a href="https://github.com/ProfessorManhattan/semantic-release-github">
-      <img width="148" height="148" alt="Semantic Release GitHub logo" src="https://gitlab.com/megabyte-labs/npm/configs/semantic-release-github/-/raw/master/logo.png" />
+    <a href="https://github.com/ProfessorManhattan/semantic-release-gh">
+      <img width="148" height="148" alt="Semantic Release GitHub logo" src="https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/-/raw/master/logo.png" />
     </a>
   </center>
 </div>
@@ -14,34 +14,34 @@
   <a href="https://megabyte.space" title="Megabyte Labs homepage" target="_blank">
     <img alt="Homepage" src="https://img.shields.io/website?down_color=%23FF4136&down_message=Down&label=Homepage&logo=home-assistant&logoColor=white&up_color=%232ECC40&up_message=Up&url=https%3A%2F%2Fmegabyte.space&style=for-the-badge" />
   </a>
-  <a href="https://github.com/ProfessorManhattan/semantic-release-github/blob/master/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
+  <a href="https://github.com/ProfessorManhattan/semantic-release-gh/blob/master/docs/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
     <img alt="Contributing" src="https://img.shields.io/badge/Contributing-Guide-0074D9?logo=github-sponsors&logoColor=white&style=for-the-badge" />
   </a>
   <a href="https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/" title="Chat with us on Slack" target="_blank">
     <img alt="Slack" src="https://img.shields.io/badge/Slack-Chat-e01e5a?logo=slack&logoColor=white&style=for-the-badge" />
   </a>
-  <a href="https://github.com/ProfessorManhattan/semantic-release-github" title="GitHub mirror" target="_blank">
+  <a href="https://github.com/ProfessorManhattan/semantic-release-gh" title="GitHub mirror" target="_blank">
     <img alt="GitHub" src="https://img.shields.io/badge/Mirror-GitHub-333333?logo=github&style=for-the-badge" />
   </a>
-  <a href="https://gitlab.com/megabyte-labs/npm/configs/semantic-release-github" title="GitLab repository" target="_blank">
+  <a href="https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh" title="GitLab repository" target="_blank">
     <img alt="GitLab" src="https://img.shields.io/badge/Repo-GitLab-fc6d26?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHJJREFUCNdNxKENwzAQQNEfWU1ZPUF1cxR5lYxQqQMkLEsUdIxCM7PMkMgLGB6wopxkYvAeI0xdHkqXgCLL0Beiqy2CmUIdeYs+WioqVF9C6/RlZvblRNZD8etRuKe843KKkBPw2azX13r+rdvPctEaFi4NVzAN2FhJMQAAAABJRU5ErkJggg==&style=for-the-badge" />
   </a>
 </div>
 <br/>
 <div align="center">
-  <a href="website.npm_package/semantic-release-gh" title="Version 0.0.6" target="_blank">
+  <a href="https://www.npmjs.com/package/semantic-release-gh" title="Version 0.0.6" target="_blank">
     <img alt="Version: 0.0.6" src="https://img.shields.io/badge/version-0.0.6-blue.svg?cacheSeconds=2592000&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&style=flat-square" />
   </a>
-  <a href="https://gitlab.com/megabyte-labs/npm/configs/semantic-release-github/-/commits/master" title="GitLab CI build status" target="_blank">
-    <img alt="Build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/npm/plugin/semantic-release-github?branch=master&label=build&logo=gitlab&logoColor=white&style=flat-square">
+  <a href="https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/-/commits/master" title="GitLab CI build status" target="_blank">
+    <img alt="Build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/npm/plugin/semantic-release-gh?branch=master&label=build&logo=gitlab&logoColor=white&style=flat-square">
   </a>
-  <a href="website.npm_package/semantic-release-gh" title="Dependency status reported by Depfu" target="_blank">
+  <a href="https://www.npmjs.com/package/semantic-release-gh" title="Dependency status reported by Depfu" target="_blank">
     <img alt="Dependency status reported by Depfu" src="https://img.shields.io/depfu/megabyte-labs/semantic-release-gh?logo=codeforces&logoColor=white&style=flat-square&logo=npm" />
   </a>
-  <a href="website.npm_package/semantic-release-gh" title="Zip file size" target="_blank">
+  <a href="https://www.npmjs.com/package/semantic-release-gh" title="Zip file size" target="_blank">
     <img alt="Zip file size" src="https://img.shields.io/bundlephobia/minzip/semantic-release-gh?style=flat-square&logo=npm&logoColor=white" />
   </a>
-  <a href="website.npm_package/semantic-release-gh" title="Total downloads of semantic-release-gh on npmjs.org" target="_blank">
+  <a href="https://www.npmjs.com/package/semantic-release-gh" title="Total downloads of semantic-release-gh on npmjs.org" target="_blank">
     <img alt="Total downloads of semantic-release-gh on npmjs.org" src="https://img.shields.io/npm/dt/semantic-release-gh?style=flat-square&logo=npm&logoColor=white" />
   </a>
   <a href="https://snyk.io/advisor/npm-package/semantic-release-gh" title="Number of vulnerabilities from Snyk scan on semantic-release-gh" target="_blank">
@@ -50,7 +50,7 @@
   <a href="website.documentation/npm" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?logo=readthedocs&logoColor=white&style=flat-square" />
   </a>
-  <a href="https://github.com/ProfessorManhattan/semantic-release-github/blob/master/LICENSE" target="_blank">
+  <a href="https://github.com/ProfessorManhattan/semantic-release-gh/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHpJREFUCNdjYOD/wMDAUP+PgYHxhzwDA/MB5gMM7AwMDxj4GBgKGGQYGCyAEEgbMDDwAAWAwmk8958xpIOI5zKH2RmOyhxmZjguAiKmgIgtQOIYmFgCIp4AlaQ9OczGkJYCJEAGgI0CGwo2HmwR2Eqw5SBnNIAdBHYaAJb6KLM15W/CAAAAAElFTkSuQmCC&style=flat-square" />
   </a>
 </div>
@@ -105,7 +105,7 @@ The following versions of Node.js and Python are required for development:
 - **[Node.js >14.18.0](repository.project.node)**
 - **[Python >3.10.0](repository.project.python)**
 
-Other versions may work, but only the above versions are supported. Most development dependencies are installed automatically by our `Taskfile.yml` set-up (even Node.js and Python). Run `bash start.sh` to install **[Bodega](https://github.com/ProfessorManhattan/Bodega)** (an improved fork of [go-task](https://github.com/go-task/task)) and run the initialization sequence. The taskfiles will automatically install dependencies as they are needed, based on what development tasks you are running. For more information, check out the [CONTRIBUTING.md](https://github.com/ProfessorManhattan/semantic-release-github/blob/main/docs/CONTRIBUTING.md) or simply run:
+Other versions may work, but only the above versions are supported. Most development dependencies are installed automatically by our `Taskfile.yml` set-up (even Node.js and Python). Run `bash start.sh` to install **[Bodega](https://github.com/ProfessorManhattan/Bodega)** (an improved fork of [go-task](https://github.com/go-task/task)) and run the initialization sequence. The taskfiles will automatically install dependencies as they are needed, based on what development tasks you are running. For more information, check out the [CONTRIBUTING.md](https://github.com/ProfessorManhattan/semantic-release-gh/blob/main/docs/CONTRIBUTING.md) or simply run:
 
 ```shell
 npm run help
@@ -344,7 +344,7 @@ See [The introducing PR](https://github.com/semantic-release/github/pull/282) fo
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/ProfessorManhattan/semantic-release-github/issues). If you would like to contribute, please take a look at the [contributing guide](https://github.com/ProfessorManhattan/semantic-release-github/blob/master/CONTRIBUTING.md).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/ProfessorManhattan/semantic-release-gh/issues). If you would like to contribute, please take a look at the [contributing guide](https://github.com/ProfessorManhattan/semantic-release-gh/blob/master/docs/CONTRIBUTING.md).
 
 <details>
 <summary><b>Sponsorship</b></summary>
@@ -375,4 +375,4 @@ I create open source projects out of love. Although I have a job, shelter, and a
 
 ## License
 
-Copyright © 2020-2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/npm/configs/semantic-release-github/-/blob/master/LICENSE) licensed.
+Copyright © 2020-2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/-/blob/master/LICENSE) licensed.
