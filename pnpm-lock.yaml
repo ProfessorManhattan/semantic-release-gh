@@ -10082,7 +10082,7 @@ packages:
   /jest-html-reporters/2.1.7:
     resolution: {integrity: sha512-qYly47l7Q59bjVWpGQ9grSYaNIAtS1L+l8jQrC24iXWKRy3N/pkKTklGtcdqsZ8hhiGQPI9skByl/63GNj0UeQ==}
     dependencies:
-      fs-extra: 9.0.1
+      fs-extra: 9.1.0
       open: 8.4.0
     dev: true
 
