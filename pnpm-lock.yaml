@@ -78,7 +78,7 @@ devDependencies:
   prettier-config-sexy-mode: 1.0.1
   proxy: 1.0.2
   proxyquire: 2.1.3
-  semantic-release-config: 1.1.1
+  semantic-release-config: 1.1.3
   server-destroy: 1.0.1
   sinon: 12.0.1
   tempy: 1.0.1
@@ -17853,8 +17853,8 @@ packages:
     engines: {node: '>=0.12.0'}
     dev: true
 
-  /semantic-release-config/1.1.1:
-    resolution: {integrity: sha512-SxZe5+ViYVsYegkGfeu8ctXtzZeFFm+aHJUUgy5hMRt89VZnyWsD7zyeZekO8jwLmPGtw73EX+15sRNF9ackkA==}
+  /semantic-release-config/1.1.3:
+    resolution: {integrity: sha512-qLnVDhW+r3EbRoCvxXDl8X+1CTE5VrPrU5z9n++xzxsaCE4dlZ0NZ8Ird3n4gYck5zXRl0n6guDbmKlMHRfg0w==}
     engines: {node: '>=14.18.0'}
     dependencies:
       '@semantic-release/changelog': 6.0.1_semantic-release@19.0.2
