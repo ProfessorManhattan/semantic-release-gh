@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "plugin-semantic-release-gh"
+name = "semantic-release-gh"
 version = "0.0.6"
 description = "The official GitHub plugin, modified to accept repositoryUrl as a parameter"
 authors = ["Brian Zalewski <brian@megabyte.space>"]
