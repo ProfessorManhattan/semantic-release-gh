@@ -30,7 +30,7 @@
     "codecov": "codecov -f coverage/coverage-final.json",
     "help": "task --menu",
     "lint": "xo",
-    "prepare": "npm run start && task common:husky",
+    "prepare": "npm run start && (test -f Taskfile.yml && task common:husky) || true",
     "repair": "bash <(curl -sS https://install.doctor/repair)",
     "semantic-release": "semantic-release",
     "start": "bash start.sh",
