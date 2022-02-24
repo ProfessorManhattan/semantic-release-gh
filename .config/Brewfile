@@ -10,14 +10,12 @@ tap "homebrew/services"
 brew "act"
 # @brew [appium](https://appium.io/) - A framework focused on native Android/iOS testing
 brew "appium"
-# @brew [azure-cli](https://docs.microsoft.com/en-us/cli/azure/) - The official CLI for interacting with Microsoft Azure
 brew "azure-cli"
 # @brew [bat](https://github.com/sharkdp/bat) - Clone of cat with syntax highlighting and Git integration
 brew "bat"
 # @brew [bitwarden-cli](https://github.com/bitwarden/cli) - Access and manage a BitWarden instance via CLI
 brew "bitwarden-cli"
 # @brew [codeclimate](https://github.com/codeclimate/codeclimate) - Interact with CodeClimate via CLI
-tap "codeclimate/formulae"
 brew "codeclimate"
 # @brew [croc](https://github.com/schollz/croc) - A sharing tool that helps transfer files from one computer to another
 brew "croc"
@@ -42,6 +40,8 @@ brew "goodwithtech/r/dockle"
 brew "exiftool"
 # @brew [ffsend](https://github.com/timvisee/ffsend) - Fully featured Firefox Send client that makes sharing files easy
 brew "ffsend"
+# @brew [gcloud](https://cloud.google.com/sdk/gcloud) - The official Google Cloud Platform SDK CLI tool
+brew "gcloud"
 # @brew [gh](https://github.com/cli/cli) - The official GitHub command line tool
 brew "gh"
 # @brew [git](https://git-scm.com) - Tool for interacting with git repositories
@@ -95,7 +95,6 @@ brew "rsync"
 # @brew [ruby](https://www.ruby-lang.org/) - Powerful, clean, object-oriented scripting language
 brew "ruby"
 # @brew [sentry-cli](https://github.com/getsentry/sentry-cli) - Interact with Sentry via a CLI
-tap "getsentry/tools"
 brew "getsentry/tools/sentry-cli"
 # @brew [sshpass](https://github.com/hudochenkov/homebrew-sshpass) - Library that allows Ansible to connect over SSH with a password
 tap "hudochenkov/sshpass"

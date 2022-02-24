@@ -66,10 +66,7 @@ tasks:
       - poetry config virtualenvs.in-project true
       - |
         if [ -n "$PYPI_TOKEN" ]; then
-          poetry config pypi-token.pypi "$PYPI_TOKEN" || EXIT_CODE=$?
-          if [ -n "$EXIT_CODE" ]; then
-            .config/log warn 'Failed to run `poetry config pypi-token.pypi`'
-          fi
+          poetry config pypi-token.pypi "$PYPI_TOKEN"
         fi
       - |
         if [ -n "$GITLAB_CI" ]; then
@@ -77,23 +74,14 @@ tasks:
         fi
       - |
         if [ -n "$GITLAB_CI" ]; then
-          poetry config http-basic.gitlab gitlab-ci-token "${CI_JOB_TOKEN}" || EXIT_CODE=$?
-          if [ -n "$EXIT_CODE" ]; then
-            .config/log warn 'Failed to run `poetry config http-basic.gitlab gitlab-ci-token`'
-          fi
+          poetry config http-basic.gitlab gitlab-ci-token "${CI_JOB_TOKEN}"
         fi
+      - .config/log info "Installing/updating poetry install options -> {{.INSTALL_OPTIONS}}"
       - |
         if [ -n "$AUTO_UPDATE_PIP_PACKAGES" ]; then
-          .config/log info 'Updating Poetry dependencies{{if .INSTALL_OPTIONS}} with options `{{.INSTALL_OPTIONS}}`{{end}}'
           poetry update{{if .INSTALL_OPTIONS}} {{.INSTALL_OPTIONS}}{{end}}
         else
-          .config/log info 'Installing Poetry dependencies{{if .INSTALL_OPTIONS}} with options `{{.INSTALL_OPTIONS}}`{{end}}'
-          poetry install{{if .INSTALL_OPTIONS}} {{.INSTALL_OPTIONS}}{{end}} || EXIT_CODE=$?
-          if [ -n "$EXIT_CODE" ]; then
-            .config/log warn 'Running `poetry install{{if .INSTALL_OPTIONS}} {{.INSTALL_OPTIONS}}{{end}}` failed.'
-            .config/log info 'Attempting to fix by running `poetry update{{if .INSTALL_OPTIONS}} {{.INSTALL_OPTIONS}}{{end}}`'
-            poetry update{{if .INSTALL_OPTIONS}} {{.INSTALL_OPTIONS}}{{end}}
-          fi
+          poetry install{{if .INSTALL_OPTIONS}} {{.INSTALL_OPTIONS}}{{end}}
         fi
     sources:
       - pyproject.toml

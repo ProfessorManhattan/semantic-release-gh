@@ -52,7 +52,7 @@
     "bottleneck": "^2.19.5",
     "debug": "^4.3.3",
     "dir-glob": "^3.0.1",
-    "fs-extra": "^10.0.1",
+    "fs-extra": "^10.0.0",
     "globby": "^11.1.0",
     "http-proxy-agent": "^5.0.0",
     "https-proxy-agent": "^5.0.0",
@@ -61,20 +61,22 @@
     "mime": "^3.0.0",
     "p-filter": "^2.1.0",
     "p-retry": "^4.6.1",
-    "prettier": "^2.5.1",
+    "tslib": "^2.3.1",
     "url-join": "^4.0.1"
   },
   "peerDependencies": {
     "semantic-release": ">=18.0.0-beta.1"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^16.2.1",
-    "@types/node": "^16.11.25",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@types/node": "^16.11.6",
+    "@washingtondc/development": "latest",
     "ava": "4.0.1",
     "clear-module": "4.1.2",
     "codecov": "3.8.3",
+    "cz-emoji-conventional": "^1.0.1",
     "esbuild": "^0.12.29",
-    "esbuild-node-externals": "^1.4.1",
+    "esbuild-node-externals": "^1.3.0",
     "eslint-config-strict-mode": "latest",
     "git-cz-emoji": "latest",
     "glob": "^7.2.0",
@@ -89,7 +91,8 @@
     "server-destroy": "1.0.1",
     "sinon": "12.0.1",
     "tempy": "1.0.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "xo": "0.36.1"
   },
   "keywords": [
     "git",
@@ -288,6 +291,9 @@
     ]
   },
   "lint-staged": {
+    "(.dockerignore|.editorconfig|.eslintignore|.gitattributes|.gitconfig|.gitignore|.gitmodules|.nodemonignore|.npmignore|.prettierignore)": [
+      "task fix:prettier --"
+    ],
     "(Brewfile|composer.lock|Gemfile|Gopkg.lock|Pipfile.lock)": [
       "task fix:prettier --"
     ],
@@ -304,8 +310,15 @@
       "task fix:js --",
       "task lint:js --"
     ],
+    "**/*.(css|html|less|md|mjml|php|scss|sh|xml)": [
+      "task fix:prettier --"
+    ],
     "**/*.(json|webapp|webmanifest)": [
       "task fix:json --"
+    ],
+    "**/*.(js|jsx|ts|tsx)": [
+      "task fix:js --",
+      "task lint:js --"
     ],
     "**/*.(yml|yaml)": [
       "task fix:yaml --",
@@ -314,6 +327,9 @@
     "**/*.go": [
       "task fix:go --",
       "task lint:go --"
+    ],
+    "**/*.json": [
+      "task fix:json --"
     ],
     "**/*.php": [
       "task fix:php --",
@@ -329,13 +345,20 @@
       "task lint:shell --"
     ],
     "**/*.toml": [
-      "task fix:toml --",
       "task fix:prettier --",
       "task lint:toml --"
     ],
     "**/*.xml": [
       "task fix:xml --",
       "task lint:xml --"
+    ],
+    "Dockerfile": [
+      "task fix:prettier --",
+      "task lint:docker --"
+    ],
+    "Vagrantfile": [
+      "task fix:prettier --",
+      "task lint:vagrant"
     ],
     "Dockerfile": [
       "task fix:prettier --",
@@ -387,6 +410,7 @@
   "pnpm": {
     "allowedVersions": {
       "@typescript-eslint/eslint-plugin": "5",
+      "eslint": "8",
       "typescript": "4"
     },
     "neverBuiltDependencies": [
@@ -396,8 +420,10 @@
     ],
     "peerDependencyRules": {
       "ignoreMissing": [
+        "@typescript-eslint/eslint-plugin",
         "eslint",
-        "prettier"
+        "prettier",
+        "typescript"
       ]
     }
   },
