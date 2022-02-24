@@ -1,6 +1,4 @@
 ---
-extends: default
-
 ignore: |
   .autodoc/
   .cache/
@@ -22,7 +20,10 @@ ignore: |
   node_modules/
   pnpm-lock.yaml
   roles/
+  testdata/
   venv/
+
+extends: default
 
 rules:
   braces:
@@ -42,6 +43,9 @@ rules:
   line-length:
     level: error
     max: 160
+    ignore: |
+      .config/taskfiles/
+      common/.config/taskfiles/
   truthy:
     # eslint-disable-next-line yml/plain-scalar
     allowed-values: ['false', 'on', 'true']
