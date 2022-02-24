@@ -1,0 +1,46 @@
+---
+# yYmllint disable rule:line-length
+- hosts: localhost
+  name: Update platforms
+  tasks:
+    - name: Filtering platforms list using the group defined in the MOLECULE_GROUP environment variable
+      set_fact:
+        # eslint-disable-next-line max-len
+        molecule_yml: "{{ molecule_yml | combine({'platforms': (molecule_yml.platforms | selectattr('groups', 'contains', lookup('env', 'MOLECULE_GROUP')))}) }}"
+      when: ansible_env.MOLECULE_GROUP is defined
+
+- connection: local
+  gather_facts: false
+  handlers:
+    - ansible.builtin.import_tasks: handlers/main.yml
+      name: Import main handler tasks
+  hosts: localhost
+  name: Destroy
+  no_log: '{{ molecule_no_log }}'
+  tasks:
+    - async: 7200
+      google.cloud.gcp_compute_instance:
+        auth_kind: '{{ molecule_yml.driver.auth_kind | default(omit, true) }}'
+        name: '{{ item.name }}'
+        project: "{{ molecule_yml.driver.project_id | default(lookup('env', 'GCE_PROJECT_ID')) }}"
+        scopes: "{{ molecule_yml.driver.scopes | default(['https://www.googleapis.com/auth/compute'], True) }}"
+        service_account_email: '{{ molecule_yml.driver.service_account_email | default (omit, true) }}'
+        service_account_file: '{{ molecule_yml.driver.service_account_file | default (omit, true) }}'
+        state: absent
+        zone: "{{ item.zone | default(molecule_yml.driver.region + '-b') }}"
+      loop: '{{ molecule_yml.platforms }}'
+      name: Destroy molecule instance(s)
+      notify:
+        - Wipe out instance config
+        - Dump instance config
+
+      poll: 0
+      register: async_results
+    - ansible.builtin.async_status:
+        jid: '{{ item.ansible_job_id }}'
+      delay: 10
+      loop: '{{ async_results.results }}'
+      name: Wait for instance(s) deletion to complete
+      register: server
+      retries: 300
+      until: server.finished

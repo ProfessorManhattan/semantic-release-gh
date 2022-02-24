@@ -1,4 +1,6 @@
 ---
+extends: default
+
 ignore: |
   .autodoc/
   .cache/
@@ -23,8 +25,6 @@ ignore: |
   testdata/
   venv/
 
-extends: default
-
 rules:
   braces:
     level: error
@@ -46,9 +46,6 @@ rules:
       common/.config/taskfiles/
     level: error
     max: 160
-    ignore: |
-      .config/taskfiles/
-      common/.config/taskfiles/
   truthy:
     # eslint-disable-next-line yml/plain-scalar
     allowed-values: ['false', 'on', 'true']

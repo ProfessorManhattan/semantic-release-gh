@@ -1,0 +1,180 @@
+---
+# yYmllint disable rule:line-length
+- hosts: localhost
+  name: Update platforms
+  tasks:
+    - name: Filtering platforms list using the group defined in the MOLECULE_GROUP environment variable
+      set_fact:
+        # eslint-disable-next-line max-len
+        molecule_yml: "{{ molecule_yml | combine({'platforms': (molecule_yml.platforms | selectattr('groups', 'contains', lookup('env', 'MOLECULE_GROUP')))}) }}"
+      when: ansible_env.MOLECULE_GROUP is defined
+
+- connection: local
+  gather_facts: false
+  hosts: localhost
+  name: Create
+  no_log: '{{ molecule_no_log }}'
+  tasks:
+    - community.docker.docker_login:
+        cacert_path: "{{ item.cacert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/ca.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        cert_path: "{{ item.cert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/cert.pem')  if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        docker_host: "{{ item.docker_host | default(lookup('env', 'DOCKER_HOST') or 'unix://var/run/docker.sock') }}"
+        email: '{{ item.registry.credentials.email | default(omit) }}'
+        key_path: "{{ item.key_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/key.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        password: '{{ item.registry.credentials.password }}'
+        registry: '{{ item.registry.url }}'
+        tls_verify: "{{ item.tls_verify | default(lookup('env', 'DOCKER_TLS_VERIFY')) or false }}"
+        username: '{{ item.registry.credentials.username }}'
+      name: Log into a Docker registry
+      no_log: true
+
+      when:
+        - item.registry is defined
+        - item.registry.credentials is defined
+        - item.registry.credentials.username is defined
+      with_items: '{{ molecule_yml.platforms }}'
+    - ansible.builtin.stat:
+        path: "{{ molecule_scenario_directory + '/' + (item.dockerfile | default( 'Dockerfile.j2')) }}"
+      loop: '{{ molecule_yml.platforms }}'
+      name: Check presence of custom Dockerfiles
+      register: dockerfile_stats
+
+    - ansible.builtin.template:
+        dest: "{{ molecule_ephemeral_directory }}/Dockerfile_{{ item.image | regex_replace('[^a-zA-Z0-9_]', '_') }}"
+        mode: '0600'
+        # wWen using embedded playbooks the dockerfile is alonside them
+        src: >-
+          {%- if dockerfile_stats.results[i].stat.exists -%}
+          {{ molecule_scenario_directory + '/' + (item.dockerfile | default( 'Dockerfile.j2')) }}
+          {%- else -%}
+          {{ playbook_dir + '/Dockerfile.j2' }}
+          {%- endif -%}
+      loop: '{{ molecule_yml.platforms }}'
+      loop_control:
+        index_var: i
+      name: Create Dockerfiles from image names
+      register: platforms
+
+      when: not item.pre_build_image | default(false)
+    - community.docker.docker_image_info:
+        cacert_path: "{{ item.cacert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/ca.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        cert_path: "{{ item.cert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/cert.pem')  if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        docker_host: "{{ item.item.docker_host | default(lookup('env', 'DOCKER_HOST') or 'unix://var/run/docker.sock') }}"
+        key_path: "{{ item.key_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/key.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        name: 'molecule_local/{{ item.item.name }}'
+        tls_verify: "{{ item.tls_verify | default(lookup('env', 'DOCKER_TLS_VERIFY')) or false }}"
+      name: Discover local Docker images
+      register: docker_images
+
+      when:
+        - not item.pre_build_image | default(false)
+      with_items: '{{ platforms.results }}'
+    - community.docker.docker_image:
+        build:
+          args: '{{ item.item.buildargs | default(omit) }}'
+          dockerfile: '{{ item.invocation.module_args.dest }}'
+          network: '{{ item.item.network_mode | default(omit) }}'
+          path: '{{ molecule_ephemeral_directory }}'
+          pull: '{{ item.item.pull | default(true) }}'
+        cacert_path: "{{ item.cacert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/ca.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        cert_path: "{{ item.cert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/cert.pem')  if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        docker_host: "{{ item.item.docker_host | default(lookup('env', 'DOCKER_HOST') or 'unix://var/run/docker.sock') }}"
+        force_source: '{{ item.item.force | default(true) }}'
+        key_path: "{{ item.key_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/key.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        name: 'molecule_local/{{ item.item.image }}'
+        source: build
+        tls_verify: "{{ item.tls_verify | default(lookup('env', 'DOCKER_TLS_VERIFY')) or false }}"
+      delay: 30
+
+      loop_control:
+        label: 'molecule_local/{{ item.item.image }}'
+      name: Build an Ansible compatible image (new) # nNqa: no-handler
+      no_log: false
+      register: result
+      retries: 3
+      until: result is not failed
+      when:
+        - platforms.changed or docker_images.results | map(attribute='images') | select('equalto', []) | list | count >= 0
+        - not item.item.pre_build_image | default(false)
+      with_items: '{{ platforms.results }}'
+    - ansible.builtin.include_tasks: tasks/create_network.yml
+      loop_control:
+        label: '{{ item.name }}'
+      name: Create docker network(s)
+      no_log: false
+
+      with_items: '{{ molecule_yml.platforms | molecule_get_docker_networks(molecule_labels) }}'
+    - ansible.builtin.set_fact:
+        command_directives_dict: >-
+          {{ command_directives_dict | default({}) |
+             combine({ item.name: item.command | default('bash -c "while true; do sleep 10000; done"') })
+          }}
+      name: Determine the CMD directives
+      when: item.override_command | default(true)
+
+      with_items: '{{ molecule_yml.platforms }}'
+    - async: 7200
+      community.docker.docker_container:
+        cacert_path: "{{ item.cacert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/ca.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        capabilities: '{{ item.capabilities | default(omit) }}'
+        cert_path: "{{ item.cert_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/cert.pem')  if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        command: '{{ (command_directives_dict | default({}))[item.name] | default(omit) }}'
+        command_handling: "{{ item.command_handling | default('compatibility') }}"
+        container_default_behavior: "{{ item.container_default_behavior | default('compatibility'
+          if ansible_version.full is version_compare('2.10', '>=') else omit) }}"
+        devices: '{{ item.devices | default(omit) }}'
+        dns_servers: '{{ item.dns_servers | default(omit) }}'
+        docker_host: "{{ item.docker_host | default(lookup('env', 'DOCKER_HOST') or 'unix://var/run/docker.sock') }}"
+        env: '{{ item.env | default(omit) }}'
+        etc_hosts: '{{ item.etc_hosts | default(omit) }}'
+        exposed_ports: '{{ item.exposed_ports | default(omit) }}'
+        hostname: '{{ item.hostname | default(item.name) }}'
+        image: "{{ item.pre_build_image | default(false) | ternary('', 'molecule_local/') }}{{ item.image }}"
+        key_path: "{{ item.key_path | default((lookup('env', 'DOCKER_CERT_PATH') + '/key.pem') if lookup('env', 'DOCKER_CERT_PATH') else omit) }}"
+        kill_signal: '{{ item.kill_signal | default(omit) }}'
+        labels: '{{ molecule_labels | combine(item.labels | default({})) }}'
+        links: '{{ item.links | default(omit) }}'
+        log_driver: json-file
+        memory: '{{ item.memory | default(omit) }}'
+        memory_swap: '{{ item.memory_swap | default(omit) }}'
+        mounts: '{{ item.mounts | default(omit) }}'
+        name: '{{ item.name }}'
+        network_mode: '{{ item.network_mode | default(omit) }}'
+        networks: '{{ item.networks | default(omit) }}'
+        networks_cli_compatible: '{{ item.networks_cli_compatible | default(true) }}'
+        pid_mode: '{{ item.pid_mode | default(omit) }}'
+        privileged: '{{ item.privileged | default(omit) }}'
+        published_ports: '{{ item.published_ports | default(omit) }}'
+        pull: '{{ item.pull | default(omit) }}'
+        purge_networks: '{{ item.purge_networks | default(omit) }}'
+        recreate: false
+        restart_policy: '{{ item.restart_policy | default(omit) }}'
+        restart_retries: '{{ item.restart_retries | default(omit) }}'
+        security_opts: '{{ item.security_opts | default(omit) }}'
+        state: started
+        stop_signal: '{{ item.stop_signal | default(omit) }}'
+        sysctls: '{{ item.sysctls | default(omit) }}'
+        tls_verify: "{{ item.tls_verify | default(lookup('env', 'DOCKER_TLS_VERIFY')) or false }}"
+        tmpfs: '{{ item.tmpfs | default(omit) }}'
+        tty: '{{ item.tty | default(omit) }}'
+        ulimits: '{{ item.ulimits | default(omit) }}'
+        user: '{{ item.user | default(omit) }}'
+        volumes: '{{ item.volumes | default(omit) }}'
+      loop_control:
+        label: '{{ item.name }}'
+      name: Create molecule instance(s)
+      no_log: false
+      poll: 0
+
+      register: server
+      with_items: '{{ molecule_yml.platforms }}'
+    - ansible.builtin.async_status:
+        jid: '{{ item.ansible_job_id }}'
+      name: Wait for instance(s) creation to complete
+      register: docker_jobs
+      retries: 300
+      until: docker_jobs.finished
+      with_items: '{{ server.results }}'
+  vars:
+    molecule_labels:
+      owner: molecule

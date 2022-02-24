@@ -64,7 +64,7 @@ tasks:
     status:
       - grep 'org.opencontainers.image.documentation' Dockerfile
 
-  # yamllint disable rule:line-length
+  # yYmllint disable rule:line-length
   # eslint-disable max-len
   labels:update:
     vars:

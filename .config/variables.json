@@ -25,42 +25,8 @@
   "email": {
     "help": "help@megabyte.space"
   },
-  "emoji_beginnings": [
-    "🚀 ",
-    "🔥👉 ",
-    "👉 ",
-    "😉 ",
-    "🆓 ",
-    "🐴 ",
-    "👀 ",
-    "🎉 ",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ],
-  "emoji_endings": [
-    " 🚀",
-    " 🔥🔥🔥",
-    " 👏",
-    " 😉",
-    " 🐙",
-    " 🐴",
-    " 👀",
-    " 🎟",
-    " 🎉🎉",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ],
+  "emoji_beginnings": ["🚀 ", "🔥👉 ", "👉 ", "😉 ", "🆓 ", "🐴 ", "👀 ", "🎉 ", "", "", "", "", "", "", "", ""],
+  "emoji_endings": [" 🚀", " 🔥🔥🔥", " 👏", " 😉", " 🐙", " 🐴", " 👀", " 🎟", " 🎉🎉", "", "", "", "", "", "", ""],
   "github_prefix": "<i></i>",
   "gitlab_pipelines": [
     {
@@ -241,6 +207,8 @@
   "scriptsBuild": "task npm:build:tsconfig",
   "scriptsHelp": "task --menu",
   "scriptsPrepare": "npm run start && (test -f Taskfile.yml && task common:husky) || true",
+  "scriptsReplaceThis": "\"",
+  "scriptsReplaceWith": "\\\"",
   "scriptsStart": "bash start.sh",
   "scriptsTest": "task npm:test:none",
   "sharp_instructions": [],
