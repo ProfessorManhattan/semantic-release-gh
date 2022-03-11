@@ -28,16 +28,11 @@
   "scripts": {
     "build": "task npm:build:tsconfig",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
-    "codecov": "codecov -f coverage/coverage-final.json",
     "help": "task --menu",
-    "lint": "xo",
     "prepare": "npm run start && (test -f Taskfile.yml && task common:husky) || true",
     "repair": "bash <(curl -sS https://install.doctor/repair)",
-    "semantic-release": "semantic-release",
     "start": "bash start.sh",
-    "pretest": "npm run lint",
-    "test": "task npm:test:none",
-    "test:ci": "nyc ava -v"
+    "test": "task npm:test:none"
   },
   "config": {
     "commitizen": {
@@ -62,9 +57,6 @@
     "p-filter": "^2.1.0",
     "p-retry": "^4.6.1",
     "url-join": "^4.0.1"
-  },
-  "peerDependencies": {
-    "semantic-release": ">=18.0.0-beta.1"
   },
   "optionalDependencies": {},
   "devDependencies": {
@@ -98,8 +90,7 @@
     "sinon": "12.0.1",
     "tempy": "1.0.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.5",
-    "xo": "0.36.1"
+    "typescript": "^4.5.5"
   },
   "keywords": [
     "git",

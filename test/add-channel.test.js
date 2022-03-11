@@ -7,8 +7,8 @@ const rateLimit = require('./helpers/rate-limit')
 
 /* eslint camelcase: ["error", {properties: "never"}] */
 
-const addChannel = proxyquire('../lib/add-channel', {
-  './get-client': proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const addChannel = proxyquire('../dist/add-channel', {
+  './get-client': proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 })
 
 test.beforeEach((t) => {

@@ -3,7 +3,7 @@ const test = require('ava')
 const { copy, ensureDir } = require('fs-extra')
 const { isPlainObject, sortBy } = require('lodash')
 const tempy = require('tempy')
-const globAssets = require('../lib/glob-assets')
+const globAssets = require('../dist/glob-assets')
 
 const sortAssets = (assets) => sortBy(assets, (asset) => (isPlainObject(asset) ? asset.path : asset))
 

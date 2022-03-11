@@ -12,7 +12,7 @@ const serverDestroy = require('server-destroy')
 const { Octokit } = require('@octokit/rest')
 const rateLimit = require('./helpers/rate-limit')
 
-const getClient = proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const getClient = proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 
@@ -120,7 +120,7 @@ test('Use the global throttler for all endpoints', async (t) => {
 
   const octokit = new Octokit()
   octokit.hook.wrap('request', () => Date.now())
-  const github = proxyquire('../lib/get-client', {
+  const github = proxyquire('../dist/get-client', {
     './definitions/rate-limit': { GLOBAL_RATE_LIMIT: rate, RATE_LIMITS: { core: 1, search: 1 } },
     '@octokit/rest': { Octokit: stub().returns(octokit) }
   })({ githubToken: 'token' })
@@ -154,7 +154,7 @@ test('Use the same throttler for endpoints in the same rate limit group', async 
 
   const octokit = new Octokit()
   octokit.hook.wrap('request', () => Date.now())
-  const github = proxyquire('../lib/get-client', {
+  const github = proxyquire('../dist/get-client', {
     './definitions/rate-limit': { GLOBAL_RATE_LIMIT: 1, RATE_LIMITS: { core: coreRate, search: searchRate } },
     '@octokit/rest': { Octokit: stub().returns(octokit) }
   })({ githubToken: 'token' })
@@ -189,7 +189,7 @@ test('Use different throttler for read and write endpoints', async (t) => {
 
   const octokit = new Octokit()
   octokit.hook.wrap('request', () => Date.now())
-  const github = proxyquire('../lib/get-client', {
+  const github = proxyquire('../dist/get-client', {
     './definitions/rate-limit': { GLOBAL_RATE_LIMIT: 1, RATE_LIMITS: { core: { read: readRate, write: writeRate } } },
     '@octokit/rest': { Octokit: stub().returns(octokit) }
   })({ githubToken: 'token' })
@@ -215,7 +215,7 @@ test('Use the same throttler when retrying', async (t) => {
   })
   const octokit = new Octokit()
   octokit.hook.wrap('request', request)
-  const github = proxyquire('../lib/get-client', {
+  const github = proxyquire('../dist/get-client', {
     './definitions/rate-limit': {
       GLOBAL_RATE_LIMIT: 1,
       RATE_LIMITS: { core: coreRate },

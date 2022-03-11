@@ -3,13 +3,13 @@ const test = require('ava')
 const nock = require('nock')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
-const { ISSUE_ID } = require('../lib/definitions/constants')
-const findSRIssues = require('../lib/find-sr-issues')
+const { ISSUE_ID } = require('../dist/definitions/constants')
+const findSRIssues = require('../dist/find-sr-issues')
 const { authenticate } = require('./helpers/mock-github')
 const rateLimit = require('./helpers/rate-limit')
 
 const githubToken = 'github_token'
-const client = proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })({ githubToken })
+const client = proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })({ githubToken })
 
 test.beforeEach((t) => {
   // Mock logger

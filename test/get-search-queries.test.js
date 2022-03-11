@@ -1,6 +1,6 @@
 const test = require('ava')
 const { repeat } = require('lodash')
-const getSearchQueries = require('../lib/get-search-queries')
+const getSearchQueries = require('../dist/get-search-queries')
 
 test('Generate queries of 256 characters maximum', (t) => {
   const commits = [repeat('a', 40), repeat('b', 40), repeat('c', 40), repeat('d', 40), repeat('e', 40), repeat('f', 40)]

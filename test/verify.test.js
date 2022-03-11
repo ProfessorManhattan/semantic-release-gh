@@ -7,8 +7,8 @@ const rateLimit = require('./helpers/rate-limit')
 
 /* eslint camelcase: ["error", {properties: "never"}] */
 
-const verify = proxyquire('../lib/verify', {
-  './get-client': proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const verify = proxyquire('../dist/verify', {
+  './get-client': proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 })
 
 test.beforeEach((t) => {
@@ -28,7 +28,7 @@ test.serial('Verify package, token and repository access', async (t) => {
   const repo = 'test_repo'
   const environment = { GH_TOKEN: 'github_token' }
   const proxy = 'https://localhost'
-  const assets = [{ path: 'lib/file.js' }, 'file.js']
+  const assets = [{ path: 'dist/file.js' }, 'file.js']
   const successComment = 'Test comment'
   const failTitle = 'Test title'
   const failComment = 'Test comment'
@@ -507,7 +507,7 @@ test.serial('Verify if run in GitHub Action', async (t) => {
   const repo = 'test_repo'
   const environment = { GITHUB_ACTION: 'Release', GITHUB_TOKEN: 'v1.1234567890123456789012345678901234567890' }
   const proxy = 'https://localhost'
-  const assets = [{ path: 'lib/file.js' }, 'file.js']
+  const assets = [{ path: 'dist/file.js' }, 'file.js']
   const successComment = 'Test comment'
   const failTitle = 'Test title'
   const failComment = 'Test comment'
@@ -804,7 +804,7 @@ test.serial(
     const owner = 'test_user'
     const repo = 'test_repo'
     const environment = { GH_TOKEN: 'github_token' }
-    const assets = [{ path: 'lib/file.js' }, { name: 'file.js' }]
+    const assets = [{ path: 'dist/file.js' }, { name: 'file.js' }]
     const github = authenticate(environment)
       .get(`/repos/${owner}/${repo}`)
       .reply(200, { permissions: { push: true } })

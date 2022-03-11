@@ -11,16 +11,16 @@ const { authenticate, upload } = require('./helpers/mock-github')
 const rateLimit = require('./helpers/rate-limit')
 
 const cwd = 'test/fixtures/files'
-const client = proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const client = proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 
 test.beforeEach((t) => {
   // Clear npm cache to refresh the module state
   clearModule('..')
   t.context.m = proxyquire('..', {
-    './lib/fail': proxyquire('../lib/fail', { './get-client': client }),
-    './lib/publish': proxyquire('../lib/publish', { './get-client': client }),
-    './lib/success': proxyquire('../lib/success', { './get-client': client }),
-    './lib/verify': proxyquire('../lib/verify', { './get-client': client })
+    './dist/fail': proxyquire('../dist/fail', { './get-client': client }),
+    './dist/publish': proxyquire('../dist/publish', { './get-client': client }),
+    './dist/success': proxyquire('../dist/success', { './get-client': client }),
+    './dist/verify': proxyquire('../dist/verify', { './get-client': client })
   })
   // Stub the logger
   t.context.log = stub()
@@ -69,7 +69,7 @@ test.serial('Verify GitHub auth and assets config', async (t) => {
   const repo = 'test_repo'
   const environment = { GITHUB_TOKEN: 'github_token' }
   const assets = [
-    { path: 'lib/file.js' },
+    { path: 'dist/file.js' },
     'file.js',
     ['dist/**'],
     ['dist/**', '!dist/*.js'],
@@ -92,7 +92,7 @@ test.serial('Verify GitHub auth and assets config', async (t) => {
 
 test.serial('Throw SemanticReleaseError if invalid config', async (t) => {
   const environment = {}
-  const assets = [{ wrongProperty: 'lib/file.js' }]
+  const assets = [{ wrongProperty: 'dist/file.js' }]
   const successComment = 42
   const failComment = 42
   const failTitle = 42

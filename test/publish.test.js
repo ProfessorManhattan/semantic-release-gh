@@ -12,8 +12,8 @@ const rateLimit = require('./helpers/rate-limit')
 /* eslint camelcase: ["error", {properties: "never"}] */
 
 const cwd = 'test/fixtures/files'
-const publish = proxyquire('../lib/publish', {
-  './get-client': proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const publish = proxyquire('../dist/publish', {
+  './get-client': proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 })
 
 test.beforeEach((t) => {

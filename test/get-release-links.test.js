@@ -1,6 +1,6 @@
 const test = require('ava')
-const getReleaseLinks = require('../lib/get-release-links')
-const { RELEASE_NAME } = require('../lib/definitions/constants')
+const getReleaseLinks = require('../dist/get-release-links')
+const { RELEASE_NAME } = require('../dist/definitions/constants')
 
 test('Comment for release with multiple releases', (t) => {
   const releaseInfos = [

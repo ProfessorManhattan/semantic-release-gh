@@ -4,15 +4,15 @@ const { repeat } = require('lodash')
 const nock = require('nock')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
-const { ISSUE_ID } = require('../lib/definitions/constants')
+const { ISSUE_ID } = require('../dist/definitions/constants')
 const { authenticate } = require('./helpers/mock-github')
 const rateLimit = require('./helpers/rate-limit')
-const getReleaseLinks = require('../lib/get-release-links')
+const getReleaseLinks = require('../dist/get-release-links')
 
 /* eslint camelcase: ["error", {properties: "never"}] */
 
-const success = proxyquire('../lib/success', {
-  './get-client': proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const success = proxyquire('../dist/success', {
+  './get-client': proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 })
 
 test.beforeEach((t) => {

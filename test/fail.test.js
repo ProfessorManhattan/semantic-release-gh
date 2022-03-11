@@ -4,14 +4,14 @@ const nock = require('nock')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 const SemanticReleaseError = require('@semantic-release/error')
-const { ISSUE_ID } = require('../lib/definitions/constants')
+const { ISSUE_ID } = require('../dist/definitions/constants')
 const { authenticate } = require('./helpers/mock-github')
 const rateLimit = require('./helpers/rate-limit')
 
 /* eslint camelcase: ["error", {properties: "never"}] */
 
-const fail = proxyquire('../lib/fail', {
-  './get-client': proxyquire('../lib/get-client', { './definitions/rate-limit': rateLimit })
+const fail = proxyquire('../dist/fail', {
+  './get-client': proxyquire('../dist/get-client', { './definitions/rate-limit': rateLimit })
 })
 
 test.beforeEach((t) => {

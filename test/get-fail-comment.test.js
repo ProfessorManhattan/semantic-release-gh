@@ -1,6 +1,6 @@
 const test = require('ava')
 const SemanticReleaseError = require('@semantic-release/error')
-const getfailComment = require('../lib/get-fail-comment')
+const getfailComment = require('../dist/get-fail-comment')
 
 test('Comment with mutiple errors', (t) => {
   const errors = [
