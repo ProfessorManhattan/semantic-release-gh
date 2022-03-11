@@ -9,7 +9,14 @@ specifiers:
   '@commitlint/config-conventional': ^16.0.0
   '@octokit/rest': ^18.12.0
   '@semantic-release/error': ^2.2.0
+  '@types/debug': ^4.1.7
+  '@types/dir-glob': ^2.0.1
+  '@types/fs-extra': ^9.0.13
+  '@types/issue-parser': ^3.0.1
+  '@types/lodash': ^4.14.179
+  '@types/mime': ^2.0.3
   '@types/node': ^16.11.6
+  '@types/url-join': ^4.0.1
   '@washingtondc/development': latest
   aggregate-error: ^3.1.0
   ava: 4.0.1
@@ -21,7 +28,7 @@ specifiers:
   dir-glob: ^3.0.1
   esbuild: ^0.12.29
   esbuild-node-externals: ^1.3.0
-  eslint-config-strict-mode: latest
+  eslint-config-strict-mode: ^1.0.51
   fs-extra: ^10.0.0
   git-cz-emoji: latest
   glob: ^7.2.0
@@ -70,7 +77,14 @@ dependencies:
 
 devDependencies:
   '@commitlint/config-conventional': 16.2.1
+  '@types/debug': 4.1.7
+  '@types/dir-glob': 2.0.1
+  '@types/fs-extra': 9.0.13
+  '@types/issue-parser': 3.0.1
+  '@types/lodash': 4.14.179
+  '@types/mime': 2.0.3
   '@types/node': 16.11.25
+  '@types/url-join': 4.0.1
   '@washingtondc/development': 1.0.10_typescript@4.5.5
   ava: 4.0.1
   clear-module: 4.1.2
@@ -78,14 +92,14 @@ devDependencies:
   cz-emoji-conventional: 1.0.1
   esbuild: 0.12.29
   esbuild-node-externals: 1.4.1_esbuild@0.12.29
-  eslint-config-strict-mode: 1.0.44_typescript@4.5.5
+  eslint-config-strict-mode: 1.0.51_typescript@4.5.5
   git-cz-emoji: 1.1.24
   glob: 7.2.0
   handlebars-helpers: 0.10.0
   jest-preset-ts: 1.0.1_2f61fcbd497bf16f2c4460a160dea97a
   nock: 13.2.2
   nyc: 15.1.0
-  prettier-config-sexy-mode: 1.0.1_typescript@4.5.5
+  prettier-config-sexy-mode: 1.0.3_typescript@4.5.5
   proxy: 1.0.2
   proxyquire: 2.1.3
   semantic-release-config: 1.1.18
@@ -3997,6 +4011,19 @@ packages:
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
     dev: true
 
+  /@toml-tools/lexer/0.3.1:
+    resolution: {integrity: sha512-CCKHQb5OWpgFu47MQ2rcql4AnE9GaehNk/c1oJOyOBovED6XmdzQPXsvPSu+NJ9lToqJNoX+nLXQsB8WyQGdzQ==}
+    dependencies:
+      chevrotain: 4.1.1
+    dev: true
+
+  /@toml-tools/parser/0.3.1:
+    resolution: {integrity: sha512-vadwVx5TkgByt19dbp/rfIUKPkDdn5werANYvziiGK9wHlqPA0BWnvOloQw/dPDxF31+Ag0+zarXJpPDdRsPPg==}
+    dependencies:
+      '@toml-tools/lexer': 0.3.1
+      chevrotain: 4.1.1
+    dev: true
+
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
@@ -4078,6 +4105,16 @@ packages:
     resolution: {integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==}
     dev: true
 
+  /@types/debug/4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: true
+
+  /@types/dir-glob/2.0.1:
+    resolution: {integrity: sha512-4LClJMcgR7UaV55YKFtb1EiRA/+rVKyTb1LAHjdstSrI6+3+qRLgXrjPEG2OzDAiAutDqLBnxqE5gJ3cx+Jiag==}
+    dev: true
+
   /@types/eslint/7.29.0:
     resolution: {integrity: sha512-VNcvioYDH8/FxaeTKkM4/TiTwt6pBV9E3OfGmvaw8tPl0rrHCJ4Ll15HRT+pMiFAf/MLQvAzC+6RzUMEL9Ceng==}
     dependencies:
@@ -4087,6 +4124,12 @@ packages:
 
   /@types/estree/0.0.51:
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
+    dev: true
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 16.11.25
     dev: true
 
   /@types/glob/7.2.0:
@@ -4118,6 +4161,10 @@ packages:
 
   /@types/is-function/1.0.1:
     resolution: {integrity: sha512-A79HEEiwXTFtfY+Bcbo58M2GRYzCr9itHWzbzHVFNEYCcoU/MMGwYYf721gBrnhpj1s6RGVVha/IgNFnR0Iw/Q==}
+    dev: true
+
+  /@types/issue-parser/3.0.1:
+    resolution: {integrity: sha512-cdggbeJIxWoIB8CB57BvenONrQZcBuEf2uddxMRNIy2jgdcnSxnY71tQcNrxdqTG4VmQP5fdLLE9E+jCnMK0Fg==}
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -4184,10 +4231,18 @@ packages:
       '@types/node': 16.11.25
     dev: true
 
+  /@types/lodash/4.14.179:
+    resolution: {integrity: sha512-uwc1x90yCKqGcIOAT6DwOSuxnrAbpkdPsUOZtwrXb4D/6wZs+6qG7QnIawDuZWg0sWpxl+ltIKCaLoMlna678w==}
+    dev: true
+
   /@types/mdast/3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/mime/2.0.3:
+    resolution: {integrity: sha512-Jus9s4CDbqwocc5pOAnh8ShfrnMcPHuJYzVcSUU7lrh8Ni5HuIqX3oilL86p3dlTrk0LzHRCgA/GQ7uNCw6l2Q==}
     dev: true
 
   /@types/minimatch/3.0.5:
@@ -4196,6 +4251,10 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/ms/0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
   /@types/node-fetch/2.6.1:
@@ -4304,6 +4363,10 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
+    dev: true
+
+  /@types/url-join/4.0.1:
+    resolution: {integrity: sha512-wDXw9LEEUHyV+7UWy7U315nrJGJ7p1BzaCxDpEoLr789Dk1WDVMMlf3iBfbG2F8NdWnYyFbtTxUn2ZNbm1Q4LQ==}
     dev: true
 
   /@types/webpack-env/1.16.3:
@@ -6629,6 +6692,12 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
+  /chevrotain/4.1.1:
+    resolution: {integrity: sha512-NQky1HQyiAzxsxpq4Ppt47SYO2U3JLtmfs85QPf3kYSzGBjjp5AA8kqjH8hCjGFRpaQ781QOk1ragQIOkBgUTA==}
+    dependencies:
+      regexp-to-ast: 0.3.5
+    dev: true
+
   /chevrotain/6.5.0:
     resolution: {integrity: sha512-BwqQ/AgmKJ8jcMEjaSnfMybnKMgGTrtDKowfTP3pX4jwVy0kNjRsT/AP6h+wC3+3NC+X8X15VWBnTCQlX+wQFg==}
     dependencies:
@@ -8572,8 +8641,8 @@ packages:
       eslint: 8.9.0
     dev: true
 
-  /eslint-config-strict-mode/1.0.44_typescript@4.5.5:
-    resolution: {integrity: sha512-kM+KvUGpx6/Uow0d2+wCVLjVMtphht+JT6r7lpiysj51ci7PnppUQV422GDYO5D9O4q43P7H8wdsMblOGwbM+Q==}
+  /eslint-config-strict-mode/1.0.51_typescript@4.5.5:
+    resolution: {integrity: sha512-pwZ0o3wD7QUcCTM5YqxcuHindtgkba6rO4ySJ/QZ66NdpySXxU8jg2aFzpkwTxW2MlQbmmrjhTcama6MtHSSZw==}
     engines: {node: '>=14.18.0'}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.12.1_aa3af6382115a42a71cc388b7b2c30b3
@@ -8586,6 +8655,7 @@ packages:
       eslint-formatter-summary: 1.1.0
       eslint-plugin-angular: 4.1.0
       eslint-plugin-array-func: 3.1.7_eslint@8.9.0
+      eslint-plugin-diff: 1.0.12_eslint@8.9.0
       eslint-plugin-editorconfig: 3.2.0_c98266ab067bdbead27a0c4c155ee052
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.9.0
       eslint-plugin-etc: 2.0.2_eslint@8.9.0+typescript@4.5.5
@@ -8786,6 +8856,15 @@ packages:
       micro-spelling-correcter: 1.1.1
       pkg-dir: 4.2.0
       resolve-from: 5.0.0
+    dev: true
+
+  /eslint-plugin-diff/1.0.12_eslint@8.9.0:
+    resolution: {integrity: sha512-gc770JHqLd5BSGc3dk/LZ4l58dEGg3leAX/7mQLnuAnC1ar8ZC1jNxLF8pvpTQTXEOXtwXyeSeXiV0TMhAM+nA==}
+    engines: {node: '>=10.23.0'}
+    peerDependencies:
+      eslint: '>=6.7.0'
+    dependencies:
+      eslint: 8.9.0
     dev: true
 
   /eslint-plugin-editorconfig/3.2.0_c98266ab067bdbead27a0c4c155ee052:
@@ -16521,9 +16600,10 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier-config-sexy-mode/1.0.1_typescript@4.5.5:
-    resolution: {integrity: sha512-6ZdAv6LW2vq++c5fqoh2MWrIZk9fi67o608xizEPYKPMjGUNDsqjJ/pYiJLp7yDHgGerEERc4bRQqlh8a9W6YA==}
+  /prettier-config-sexy-mode/1.0.3_typescript@4.5.5:
+    resolution: {integrity: sha512-A4bP9Ktdxyx5c+yd6reU5zcNqieIkyNwjoAo8vfjgxa3ZWpt2eRBeqKd7ru8gcrNOCiPI57JXXFjuDEvU0lfWg==}
     engines: {node: '>=14.18.0'}
+    deprecated: Deprecated in favor of 1.1.0
     dependencies:
       '@prettier/plugin-php': 0.17.6_prettier@2.5.1
       '@prettier/plugin-pug': 1.19.2_prettier@2.5.1
@@ -16540,6 +16620,7 @@ packages:
       prettier-plugin-sh: 0.7.1_prettier@2.5.1
       prettier-plugin-solidity: 1.0.0-beta.19_prettier@2.5.1
       prettier-plugin-sql: 0.4.1_prettier@2.5.1
+      prettier-plugin-toml: 0.3.1
       tslib: 2.3.1
     transitivePeerDependencies:
       - supports-color
@@ -16664,6 +16745,13 @@ packages:
       node-sql-parser: 4.1.1
       prettier: 2.5.1
       sql-formatter: 4.0.2
+    dev: true
+
+  /prettier-plugin-toml/0.3.1:
+    resolution: {integrity: sha512-j47DEO/dN/acU1nSL/B7q4A4Z2SYJhpWPCLPkcmfAXIQC6A5GD6Ao/bi9HRHZ8ueIDOauqjuAQbnvRxLXMjazA==}
+    dependencies:
+      '@toml-tools/parser': 0.3.1
+      prettier: 1.19.1
     dev: true
 
   /prettier/1.19.1:
@@ -17370,6 +17458,10 @@ packages:
       regexpp: 3.2.0
     dev: true
 
+  /regexp-to-ast/0.3.5:
+    resolution: {integrity: sha512-1CJygtdvsfNFwiyjaMLBWtg2tfEqx/jSZ8S6TV+GlNL8kiH8rb4cm5Pb7A/C2BpyM/fA8ZJEudlCwi/jvAY+Ow==}
+    dev: true
+
   /regexp-to-ast/0.4.0:
     resolution: {integrity: sha512-4qf/7IsIKfSNHQXSwial1IFmfM1Cc/whNBQqRwe0V2stPe7KmN1U0tWQiIx6JiirgSrisjE0eECdNf7Tav1Ntw==}
     dev: true
@@ -17955,7 +18047,7 @@ packages:
       conventional-changelog-emoji-config: 1.4.8
       git-cz-emoji: 1.1.24
       semantic-release: 19.0.2
-      semantic-release-gh: 0.0.7_semantic-release@19.0.2
+      semantic-release-gh: 1.0.15_semantic-release@19.0.2
       semantic-release-npm-deprecate-old-versions: 1.3.2
       semantic-release-python: 2.5.30
       tslib: 2.3.1
@@ -17965,8 +18057,8 @@ packages:
       - supports-color
     dev: true
 
-  /semantic-release-gh/0.0.7_semantic-release@19.0.2:
-    resolution: {integrity: sha512-T3eQwyiMXwWMzvDIFMPVn7mzJERVRZYtNEF58bVV0SL3I9UzUkM3UAY1idJUcG3ovbz7BeerfTdIAhE2GrD/sg==}
+  /semantic-release-gh/1.0.15_semantic-release@19.0.2:
+    resolution: {integrity: sha512-VuKk2i/E4TCX9QgvBtWUZhGVI2OIZf0VWnk/X71OB2NVpopBgmfquBuQX9NZLkcHMj7XU+LkWjoq/CPL372hQA==}
     engines: {node: '>=14.18.0'}
     peerDependencies:
       semantic-release: '>=18.0.0-beta.1'

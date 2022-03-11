@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "semantic-release-gh",
-  "version": "0.0.6",
+  "version": "1.0.15",
   "description": "The official GitHub plugin, modified to accept repositoryUrl as a parameter",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
@@ -68,7 +68,14 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^16.0.0",
+    "@types/debug": "^4.1.7",
+    "@types/dir-glob": "^2.0.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/issue-parser": "^3.0.1",
+    "@types/lodash": "^4.14.179",
+    "@types/mime": "^2.0.3",
     "@types/node": "^16.11.6",
+    "@types/url-join": "^4.0.1",
     "@washingtondc/development": "latest",
     "ava": "4.0.1",
     "clear-module": "4.1.2",
@@ -76,7 +83,7 @@
     "cz-emoji-conventional": "^1.0.1",
     "esbuild": "^0.12.29",
     "esbuild-node-externals": "^1.3.0",
-    "eslint-config-strict-mode": "latest",
+    "eslint-config-strict-mode": "^1.0.51",
     "git-cz-emoji": "latest",
     "glob": "^7.2.0",
     "handlebars-helpers": "^0.10.0",
@@ -140,18 +147,10 @@
           "Gregor Martynus (https://twitter.com/gr2m)",
           "Pierre Vanduynslager (https://twitter.com/@pvdlg)"
         ],
-        "files": [
-          "lib",
-          "README.md",
-          "LICENSE",
-          "index.js"
-        ],
-        "main": "index.js",
         "nyc": {
           "all": true,
           "include": [
-            "lib/**/*.js",
-            "index.js"
+            "dist/**/*.js"
           ],
           "reporter": [
             "json",
@@ -190,77 +189,24 @@
   },
   "eslintConfig": {
     "extends": "eslint-config-strict-mode",
+    "ignorePatterns": [
+      "test/**"
+    ],
     "rules": {
-      "@typescript-eslint/no-unused-vars": "warn",
-      "@typescript-eslint/no-var-requires": "warn",
-      "array-func/prefer-flat": "warn",
-      "camelcase": "warn",
-      "capitalized-comments": "warn",
-      "etc/no-assign-mutated-array": "off",
-      "filenames/no-index": "warn",
-      "fp/no-mutating-methods": "warn",
-      "fp/no-mutation": "warn",
-      "fp/no-proxy": "warn",
-      "fp/no-rest-parameters": "warn",
-      "fp/no-throw": "warn",
-      "functional/immutable-data": "warn",
-      "functional/no-let": "warn",
-      "functional/no-throw-statement": "warn",
-      "functional/no-try-statement": "warn",
-      "id-blacklist": "warn",
-      "id-length": "warn",
-      "import/no-extraneous-dependencies": "warn",
-      "init-declarations": "warn",
-      "jsdoc/check-param-names": "warn",
-      "jsdoc/check-tag-names": "warn",
-      "jsdoc/check-types": "warn",
-      "jsdoc/require-jsdoc": "warn",
-      "jsdoc/require-param-description": "warn",
-      "jsdoc/require-param-type": "warn",
-      "jsdoc/require-returns": "warn",
-      "jsdoc/tag-lines": "warn",
-      "line-comment-position": "warn",
-      "max-len": "warn",
-      "max-lines": "warn",
-      "max-lines-per-function": "warn",
-      "max-params": "warn",
-      "max-statements": "warn",
-      "multiline-comment-style": "warn",
-      "no-inline-comments": "warn",
-      "no-magic-numbers": "warn",
-      "no-redeclare": "warn",
-      "no-secrets/no-secrets": "warn",
-      "no-shadow": "warn",
-      "no-undefined": "warn",
-      "no-underscore-dangle": "warn",
-      "no-unused-vars": "warn",
-      "no-warning-comments": "warn",
-      "node/no-missing-require": "warn",
-      "padding-line-between-statements": "warn",
-      "prefer-const": "warn",
-      "prefer-destructuring": "warn",
-      "prettier/prettier": "warn",
-      "regexp/no-super-linear-backtracking": "warn",
-      "require-await": "warn",
-      "require-jsdoc": "warn",
-      "require-unicode-regexp": "warn",
-      "security/detect-object-injection": "warn",
-      "security/detect-unsafe-regex": "warn",
-      "sonarjs/cognitive-complexity": "warn",
-      "sonarjs/no-duplicate-string": "warn",
-      "sonarjs/no-nested-template-literals": "warn",
-      "sort-keys-fix/sort-keys-fix": "warn",
-      "unicorn/error-message": "warn",
-      "unicorn/no-array-reduce": "warn",
-      "unicorn/no-null": "warn",
-      "unicorn/prefer-array-flat": "warn",
-      "unicorn/prefer-array-some": "warn",
-      "unicorn/prefer-includes": "warn",
-      "unicorn/prefer-module": "warn",
-      "unicorn/prefer-number-properties": "warn",
-      "unicorn/prefer-spread": "warn",
-      "unicorn/prevent-abbreviations": "warn",
-      "yml/sort-keys": "warn"
+      "@typescript-eslint/no-explicit-any": "off",
+      "camelcase": "off",
+      "fp/no-mutating-methods": "off",
+      "fp/no-mutation": "off",
+      "functional/immutable-data": "off",
+      "functional/no-let": "off",
+      "functional/no-throw-statement": "off",
+      "functional/no-try-statement": "off",
+      "id-blacklist": "off",
+      "max-lines-per-function": "off",
+      "max-statements": "off",
+      "sonarjs/cognitive-complexity": "off",
+      "sonarjs/no-nested-template-literals": "off",
+      "unicorn/no-array-reduce": "warn"
     }
   },
   "funding": [
@@ -420,24 +366,5 @@
       }
     ],
     "extends": "semantic-release-config"
-  },
-  "renovate": {
-    "extends": [
-      "github>semantic-release/.github"
-    ]
-  },
-  "xo": {
-    "prettier": true,
-    "rules": {
-      "camelcase": [
-        "error",
-        {
-          "properties": "never"
-        }
-      ],
-      "unicorn/no-reduce": "off",
-      "unicorn/string-content": "off"
-    },
-    "space": true
   }
 }
