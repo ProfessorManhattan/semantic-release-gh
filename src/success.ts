@@ -115,7 +115,7 @@ export const SuccessGitHub = async (pluginConfig: any, context: any) => {
           } else if (error.status === HTTP_STATUS_404) {
             logger.error("Failed to add a comment to the issue #%d as it doesn't exist.", issue.number)
           } else {
-            ;(errors as readonly any[]).push(error)
+            (errors as any).push(error)
             logger.error('Failed to add a comment to the issue #%d.', issue.number)
             // Don't throw right away and continue to update other issues
           }
@@ -142,7 +142,7 @@ export const SuccessGitHub = async (pluginConfig: any, context: any) => {
           } = await github.issues.update(updateIssue)
           logger.log('Closed issue #%d: %s.', issue.number, url)
         } catch (error) {
-          ;(errors as readonly any[]).push(error)
+          (errors as any).push(error)
           logger.error('Failed to close the issue #%d.', issue.number)
           // Don't throw right away and continue to close other issues
         }
