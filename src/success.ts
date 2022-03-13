@@ -45,7 +45,7 @@ export const SuccessGitHub = async (pluginConfig: any, context: any) => {
     const shas = commits.map(({ hash }: any) => hash)
 
     const searchQueries = GetSearchQueries(`repo:${owner}/${repo}+type:pr+is:merged`, shas).map(
-      async (promise: any) => (await github.search.issuesAndPullRequests({ promise })).data.items
+      async (q: any) => (await github.search.issuesAndPullRequests({ q })).data.items
     )
 
     const prs = await pFilter(
