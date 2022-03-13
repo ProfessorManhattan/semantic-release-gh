@@ -28,7 +28,7 @@ const getThrottler = memoize((rate: number, globalThrottler: any) =>
 )
 
 // eslint-disable-next-line max-params
-export const GetClient: any = (githubToken: string, githubUrl: string, githubApiPathPrefix: string, proxy: string) => {
+export const GetClient: any = ({ githubToken, githubUrl, githubApiPathPrefix, proxy }: any) => {
   const baseUrl = githubUrl && urljoin(githubUrl, githubApiPathPrefix)
   const globalThrottler = new Bottleneck({ minTime: GLOBAL_RATE_LIMIT })
   const github = new Octokit({
@@ -50,8 +50,8 @@ export const GetClient: any = (githubToken: string, githubUrl: string, githubApi
 
     return pRetry(async () => {
       try {
-        // Return await getThrottler(limitKey, globalThrottler).wrap(request)(options)
-        return await getThrottler(limitKey, globalThrottler).wrap(request)
+        // @ts-ignore:next-line
+        return await getThrottler(limitKey, globalThrottler).wrap(request)(options)
       } catch (error) {
         if (SKIP_RETRY_CODES.has(error.status)) {
           throw new pRetry.AbortError(error)

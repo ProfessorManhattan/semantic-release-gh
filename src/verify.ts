@@ -33,12 +33,13 @@ const VALIDATORS: any = {
 }
 
 export const VerifyGitHub = async (pluginConfig: any, context: any) => {
-  const {
+  let {
     env,
     options: { repositoryUrl },
     logger
   } = context
   const { githubToken, githubUrl, githubApiPathPrefix, proxy, ...options } = ResolveConfig(pluginConfig, context)
+  repositoryUrl = pluginConfig.repositoryUrl
 
   debug(`options repositoryUrl: ${repositoryUrl}`)
 
@@ -60,7 +61,7 @@ export const VerifyGitHub = async (pluginConfig: any, context: any) => {
   if (!owner || !repo) {
     (verifyErrors as any).push(GetError('EINVALIDGITHUBURL'))
   } else if (githubToken && !verifyErrors.some(({ code }) => code === 'EINVALIDPROXY')) {
-    const github = GetClient(githubToken, githubUrl, githubApiPathPrefix, proxy)
+    const github = GetClient({githubToken, githubUrl, githubApiPathPrefix, proxy})
 
     /*
      * https://github.com/semantic-release/github/issues/182

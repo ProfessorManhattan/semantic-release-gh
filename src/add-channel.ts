@@ -17,7 +17,7 @@ export const AddChannelGitHub = async (pluginConfig: any, context: any) => {
   debug('options: %O', options)
   const { githubToken, githubUrl, githubApiPathPrefix, proxy, repositoryUrl } = ResolveConfig(pluginConfig, context)
   const { owner, repo } = ParseGitHubURL(repositoryUrl)
-  const github = GetClient(githubApiPathPrefix, githubToken, githubUrl, proxy)
+  const github = GetClient({githubApiPathPrefix, githubToken, githubUrl, proxy})
 
   let releaseId = ''
 
