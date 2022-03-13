@@ -27,7 +27,6 @@ const getThrottler = memoize((rate: number, globalThrottler: any) =>
   new Bottleneck({ minTime: get(RATE_LIMITS, rate) }).chain(globalThrottler)
 )
 
-// eslint-disable-next-line max-params
 export const GetClient: any = ({ githubToken, githubUrl, githubApiPathPrefix, proxy }: any) => {
   const baseUrl = githubUrl && urljoin(githubUrl, githubApiPathPrefix)
   const globalThrottler = new Bottleneck({ minTime: GLOBAL_RATE_LIMIT })

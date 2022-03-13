@@ -59,9 +59,9 @@ export const VerifyGitHub = async (pluginConfig: any, context: any) => {
 
   const { repo, owner } = ParseGitHubURL(repositoryUrl)
   if (!owner || !repo) {
-    (verifyErrors as any).push(GetError('EINVALIDGITHUBURL'))
+    ;(verifyErrors as any).push(GetError('EINVALIDGITHUBURL'))
   } else if (githubToken && !verifyErrors.some(({ code }) => code === 'EINVALIDPROXY')) {
-    const github = GetClient({githubToken, githubUrl, githubApiPathPrefix, proxy})
+    const github = GetClient({ githubApiPathPrefix, githubToken, githubUrl, proxy })
 
     /*
      * https://github.com/semantic-release/github/issues/182
@@ -90,15 +90,15 @@ export const VerifyGitHub = async (pluginConfig: any, context: any) => {
           return
         }
 
-        (verifyErrors as any).push(GetError('EGHNOPERMISSION', { owner, repo }))
+        ;(verifyErrors as any).push(GetError('EGHNOPERMISSION', { owner, repo }))
       }
     } catch (error) {
       const HTTP_STATUS_401 = 401
       const HTTP_STATUS_404 = 404
       if (error.status === HTTP_STATUS_401) {
-        (verifyErrors as any).push(GetError('EINVALIDGHTOKEN', { owner, repo }))
+        ;(verifyErrors as any).push(GetError('EINVALIDGHTOKEN', { owner, repo }))
       } else if (error.status === HTTP_STATUS_404) {
-        (verifyErrors as any).push(GetError('EMISSINGREPO', { owner, repo }))
+        ;(verifyErrors as any).push(GetError('EMISSINGREPO', { owner, repo }))
       } else {
         throw error
       }
@@ -106,7 +106,7 @@ export const VerifyGitHub = async (pluginConfig: any, context: any) => {
   }
 
   if (!githubToken) {
-    (verifyErrors as any).push(GetError('ENOGHTOKEN', { owner, repo }))
+    ;(verifyErrors as any).push(GetError('ENOGHTOKEN', { owner, repo }))
   }
 
   if (verifyErrors.length > 0) {

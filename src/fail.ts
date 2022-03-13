@@ -28,7 +28,7 @@ export const FailGitHub = async (pluginConfig: any, context: any) => {
   if (failComment === false || failTitle === false) {
     logger.log('Skip issue creation.')
   } else {
-    const github = GetClient({githubApiPathPrefix, githubToken, githubUrl, proxy})
+    const github = GetClient({ githubApiPathPrefix, githubToken, githubUrl, proxy })
     // In case the repo changed name, get the new `repo`/`owner` as the search API will not follow redirects
     const [owner, repo] = (await github.repos.get(ParseGitHubURL(repositoryUrl))).data.full_name.split('/')
     const body = failComment ? template(failComment)({ branch, errors }) : GetFailComment(branch, errors)
