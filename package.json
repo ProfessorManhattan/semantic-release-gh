@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "semantic-release-gh",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "The official GitHub plugin, modified to accept repositoryUrl as a parameter",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
