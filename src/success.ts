@@ -113,7 +113,10 @@ export const SuccessGitHub = async (pluginConfig: any, context: any) => {
           if (error.status === HTTP_STATUS_403) {
             logger.error('Not allowed to add a comment to the issue #%d.', issue.number)
           } else if (error.status === HTTP_STATUS_404) {
-            logger.log("Failed to add a comment to the issue #%d as it doesn't exist. This issue might be on GitLab.", issue.number)
+            logger.log(
+              "Failed to add a comment to the issue #%d as it doesn't exist. This issue might be on GitLab.",
+              issue.number
+            )
           } else {
             ;(errors as any).push(error)
             logger.error('Failed to add a comment to the issue #%d.', issue.number)
