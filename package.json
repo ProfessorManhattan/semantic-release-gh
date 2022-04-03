@@ -67,7 +67,6 @@
     "url-join": "^4.0.1",
     "tslib": "latest"
   },
-  "optionalDependencies": {},
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/dir-glob": "^2.0.1",
