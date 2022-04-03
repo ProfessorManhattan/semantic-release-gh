@@ -67,6 +67,7 @@
     "tslib": "latest",
     "url-join": "^4.0.1"
   },
+  "optionalDependencies": {},
   "devDependencies": {
     "@commitlint/config-conventional": "latest",
     "@types/debug": "^4.1.7",
