@@ -62,6 +62,8 @@ All notable changes to this project will be documented in this file. In order to
 
 ## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-04)
 
+## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-04)
+
 ## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-03)
 
 ## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-03)
