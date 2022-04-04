@@ -90,9 +90,9 @@
     php-parser "https://github.com/glayzzle/php-parser#27abcb2337ac6450c068ef064982dfabf77916a5"
 
 "@prettier/plugin-pug@^1.19.2":
-  version "1.20.0"
-  resolved "1.20.0"
-  integrity sha512-NT5gVO/SOVNKOPYyLttWSzryO3prVRrw5X8N7NFOTlkDwkOoRXSvGAsUa8OrPxOiV21/vkKTjUic2kbCYw6lig==
+  version "1.20.1"
+  resolved "1.20.1"
+  integrity sha512-pMAfomxIiPHKn01idtsnDJFEqTGMzMzJajo52lWw3urDasJyf5gwQKqyOp1gB1yIbC5K3OBvsFtSMrOTbxHo6w==
   dependencies:
     pug-lexer "^5.0.0"
 
