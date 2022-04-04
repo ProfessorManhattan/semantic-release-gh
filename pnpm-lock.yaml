@@ -15,7 +15,7 @@ specifiers:
   '@types/issue-parser': ^3.0.1
   '@types/lodash': ^4.14.181
   '@types/mime': ^2.0.3
-  '@types/node': ^16.11.6
+  '@types/node': ^16.11.26
   '@types/url-join': ^4.0.1
   aggregate-error: ^3.1.0
   ava: 4.0.1
@@ -25,7 +25,7 @@ specifiers:
   debug: ^4.3.4
   dir-glob: ^3.0.1
   esbuild: ^0.12.29
-  esbuild-node-externals: ^1.3.0
+  esbuild-node-externals: ^1.4.1
   eslint-config-strict-mode: latest
   fs-extra: ^10.0.1
   git-cz-emoji: latest
@@ -44,12 +44,12 @@ specifiers:
   prettier-config-sexy-mode: latest
   proxy: 1.0.2
   proxyquire: 2.1.3
-  semantic-release-config: ^1.1.23
+  semantic-release-config: latest
   server-destroy: 1.0.1
   sinon: 12.0.1
   tempy: 1.0.1
   tslib: latest
-  typescript: ^4.5.5
+  typescript: ^4.6.3
   url-join: ^4.0.1
 
 dependencies:
@@ -9571,7 +9571,7 @@ packages:
     resolution: {integrity: sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==}
     engines: {node: '>=12'}
     dependencies:
-      graceful-fs: 4.2.9
+      graceful-fs: 4.2.10
       jsonfile: 6.1.0
       universalify: 2.0.0
 
@@ -10036,10 +10036,6 @@ packages:
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
-    dev: true
-
-  /graceful-fs/4.2.9:
-    resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
 
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
@@ -13045,7 +13041,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.9
+      graceful-fs: 4.2.10
 
   /jsonparse/1.3.1:
     resolution: {integrity: sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=}
