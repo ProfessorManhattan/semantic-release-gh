@@ -15,7 +15,7 @@ specifiers:
   '@types/issue-parser': ^3.0.1
   '@types/lodash': ^4.14.181
   '@types/mime': ^2.0.3
-  '@types/node': ^16.11.26
+  '@types/node': ^16.11.6
   '@types/url-join': ^4.0.1
   aggregate-error: ^3.1.0
   ava: 4.0.1
@@ -25,7 +25,7 @@ specifiers:
   debug: ^4.3.4
   dir-glob: ^3.0.1
   esbuild: ^0.12.29
-  esbuild-node-externals: ^1.4.1
+  esbuild-node-externals: ^1.3.0
   eslint-config-strict-mode: latest
   fs-extra: ^10.0.1
   git-cz-emoji: latest
@@ -44,12 +44,12 @@ specifiers:
   prettier-config-sexy-mode: latest
   proxy: 1.0.2
   proxyquire: 2.1.3
-  semantic-release-config: latest
+  semantic-release-config: ^1.1.23
   server-destroy: 1.0.1
   sinon: 12.0.1
   tempy: 1.0.1
   tslib: latest
-  typescript: ^4.6.3
+  typescript: ^4.5.5
   url-join: ^4.0.1
 
 dependencies:
@@ -2490,8 +2490,8 @@ packages:
       pug-lexer: 5.0.1
     dev: true
 
-  /@prettier/plugin-ruby/2.0.0:
-    resolution: {integrity: sha512-pA0rjTi5J7cT86XPNhXp7CpdV2Tlyj5oqDIsnQRxMu2P7LY2KJI/pyOSM8pzTH8BgRyQfe1P1NPCcTwxUnUWtQ==}
+  /@prettier/plugin-ruby/2.1.0:
+    resolution: {integrity: sha512-lAoYFoDnwlxM3jl+dS7yrmxD49d3nbKFTBuhHx3VTPoAwmOOKOIO4nRJTTBWF+rS7KUAVn2XPLwRR0Obh/KW6A==}
     dependencies:
       prettier: 2.6.2
     dev: true
@@ -15639,7 +15639,7 @@ packages:
     dependencies:
       '@prettier/plugin-php': 0.17.6_prettier@2.6.2
       '@prettier/plugin-pug': 1.20.1_prettier@2.6.2
-      '@prettier/plugin-ruby': 2.0.0
+      '@prettier/plugin-ruby': 2.1.0
       '@prettier/plugin-xml': 1.2.0
       prettier: 2.6.2
       prettier-plugin-go-template: 0.0.11_prettier@2.6.2
