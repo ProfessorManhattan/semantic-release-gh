@@ -161,8 +161,8 @@ export const SuccessGitHub = async (pluginConfig: any, context: any) => {
       if (!isEmpty(additionalReleases) && !isNil(ghRelaseId)) {
         const newBody =
           addReleases === 'top'
-            ? [...additionalReleases, '\n---\n', ...nextRelease.notes]
-            : [nextRelease.notes, '\n---\n', ...additionalReleases].join('')
+            ? [...additionalReleases, '\n---\n', ...nextRelease.notes].join('')
+            : [...nextRelease.notes, '\n---\n', ...additionalReleases].join('')
         await github.repos.updateRelease({ body: newBody, owner, release_id: ghRelaseId, repo })
       }
     }

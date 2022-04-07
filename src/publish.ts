@@ -1,5 +1,5 @@
 import Debug from 'debug'
-import { readFile, stat } from 'fs-extra'
+import { readFile, readFileSync, stat } from 'fs-extra'
 import { isPlainObject, template } from 'lodash'
 import mime from 'mime'
 import path from 'node:path'
@@ -29,8 +29,15 @@ export const PublishGitHub = async (pluginConfig: any, context: any) => {
   )
   const { owner, repo } = ParseGitHubURL(repositoryUrl)
   const github = GetClient({ githubApiPathPrefix, githubToken, githubUrl, proxy })
+  let body = notes
+  try {
+    const packageJson = JSON.parse(readFileSync('package.json').toString())
+    body = body.replaceAll(packageJson.blueprint.repository.gitlab, packageJson.blueprint.repository.github)
+  } catch (error) {
+    debug('error: %O', error)
+  }
   const release = {
-    body: notes,
+    body,
     name,
     owner,
     prerelease: IsPrerelease(branch.name),
