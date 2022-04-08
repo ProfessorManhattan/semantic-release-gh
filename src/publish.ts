@@ -22,6 +22,7 @@ export const PublishGitHub = async (pluginConfig: any, context: any) => {
     logger
   } = context
 
+  // eslint-disable-next-line unicorn/consistent-destructuring
   writeFileSync('./.release.json', JSON.stringify(context.nextRelease))
   logger.log('Wrote release information to ./.release.json')
 
