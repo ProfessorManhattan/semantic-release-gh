@@ -34,17 +34,23 @@ const VALIDATORS: any = {
 
 export const VerifyGitHub = async (pluginConfig: any, context: any) => {
   let {
+    // eslint-disable-next-line prefer-const
     env,
     options: { repositoryUrl },
+    // eslint-disable-next-line prefer-const
     logger
   } = context
+  // eslint-disable-next-line fp/no-rest-parameters
   const { githubToken, githubUrl, githubApiPathPrefix, proxy, ...options } = ResolveConfig(pluginConfig, context)
+  // eslint-disable-next-line prefer-destructuring
   repositoryUrl = pluginConfig.repositoryUrl
 
   debug(`options repositoryUrl: ${repositoryUrl}`)
 
+  // eslint-disable-next-line unicorn/no-array-reduce
   const verifyErrors = Object.entries({ ...options, proxy }).reduce(
     (errors, [option, value]): any =>
+      // eslint-disable-next-line security/detect-object-injection
       !isNil(value) && !VALIDATORS[option](value)
         ? [...errors, GetError(`EINVALID${option.toUpperCase()}`, { [option]: value })]
         : errors,

@@ -45,10 +45,12 @@ export const GetClient: any = ({ githubToken, githubUrl, githubApiPathPrefix, pr
   github.hook.wrap('request', (request: any, options: any): any => {
     const access: 'read' | 'write' = options.method === 'GET' ? 'read' : 'write'
     const rateCategory: 'search' | 'core' = options.url.startsWith('/search') ? 'search' : 'core'
+    // eslint-disable-next-line security/detect-object-injection
     const limitKey: any = [rateCategory, RATE_LIMITS[rateCategory][access] && access].filter(Boolean).join('.')
 
     return pRetry(async () => {
       try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore:next-line
         return await getThrottler(limitKey, globalThrottler).wrap(request)(options)
       } catch (error) {

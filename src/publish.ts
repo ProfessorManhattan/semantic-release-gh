@@ -2,6 +2,7 @@ import Debug from 'debug'
 import { readFile, readFileSync, stat } from 'fs-extra'
 import { isPlainObject, template } from 'lodash'
 import mime from 'mime'
+import { writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { RELEASE_NAME } from './definitions/constants'
 import { GetClient } from './get-client'
@@ -20,6 +21,9 @@ export const PublishGitHub = async (pluginConfig: any, context: any) => {
     nextRelease: { name, gitTag, notes },
     logger
   } = context
+
+  writeFileSync('./.release.json', JSON.stringify(context.nextRelease))
+  logger.log('Wrote release information to ./.release.json')
 
   debug('options: %O', options)
 

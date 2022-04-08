@@ -221,10 +221,9 @@ tasks:
       - :install:software:node
     vars:
       REGISTRY_ADDRESS:
-        sh: jq -r '.publishConfig["@gitlab:registry"]' package.json
+        sh: jq -r '.publishConfig["@gitlab:registry"]' package.json | sed 's/^https://'
     cmds:
-      - npm config set -- 'https://registry.npmjs.org/:_authToken' '${NPM_TOKEN}'
-      - npm config set -- '{{.REGISTRY_ADDRESS}}:_authToken' '${GITLAB_TOKEN}'
+      - npm config set -- '//registry.npmjs.org/:_authToken' '${NPM_TOKEN}' '{{.REGISTRY_ADDRESS}}:_authToken' '${GITLAB_TOKEN}'
 
   depcheck:dependencies:
     deps:
@@ -302,7 +301,7 @@ tasks:
       - TMP="$(mktemp)" && jq '.name = "@gitlab/{{.PKG_NAME}}" | .publishConfig.access = "restricted"' package.json > "$TMP" && mv "$TMP" package.json
       - cmd: npm publish
         ignore_error: true
-      - cmd: npm dist-tag {{.PKG_NAME}}@{{.VERSION}} latest
+      - cmd: npm dist-tag add {{.PKG_NAME}}@{{.VERSION}} latest
         ignore_error: true
       - mv "$BACKUP_PKG" package.json
     status:

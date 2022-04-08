@@ -45,6 +45,7 @@ export const SuccessGitHub = async (pluginConfig: any, context: any) => {
     const shas = commits.map(({ hash }: any) => hash)
 
     const searchQueries = GetSearchQueries(`repo:${owner}/${repo}+type:pr+is:merged`, shas).map(
+      // eslint-disable-next-line id-length
       async (q: any) => (await github.search.issuesAndPullRequests({ q })).data.items
     )
 
