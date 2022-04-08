@@ -1,6 +1,5 @@
 import AggregateError from 'aggregate-error'
 import { isArray, isNil, isNumber, isPlainObject, isString } from 'lodash'
-import { debug } from 'node:console'
 import urlJoin from 'url-join'
 import { GetClient } from './get-client'
 import { GetError } from './get-error'
@@ -44,8 +43,6 @@ export const VerifyGitHub = async (pluginConfig: any, context: any) => {
   const { githubToken, githubUrl, githubApiPathPrefix, proxy, ...options } = ResolveConfig(pluginConfig, context)
   // eslint-disable-next-line prefer-destructuring
   repositoryUrl = pluginConfig.repositoryUrl
-
-  debug(`options repositoryUrl: ${repositoryUrl}`)
 
   // eslint-disable-next-line unicorn/no-array-reduce
   const verifyErrors = Object.entries({ ...options, proxy }).reduce(
