@@ -15,6 +15,19 @@ Grab this version by running:
 npm i --save-dev semantic-release-gh@1.0.27
 ```
 
+## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-08)
+
+
+
+
+
+Grab this version by running:
+
+
+```shell
+npm i --save-dev semantic-release-gh@1.0.27
+```
+
 ## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-07)
 
 ## [1.0.27](https://gitlab.com/megabyte-labs/npm/plugin/semantic-release-gh/compare/v1.0.26...v1.0.27) (2022-04-07)
