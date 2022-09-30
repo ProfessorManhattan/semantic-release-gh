@@ -247,10 +247,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.185":
-  version "4.14.185"
-  resolved "4.14.185"
-  integrity sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==
+"@types/lodash@^4.14.186":
+  version "4.14.186"
+  resolved "4.14.186"
+  integrity sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==
 
 "@types/mime@^2.0.3":
   version "2.0.3"
